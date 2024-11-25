@@ -6,57 +6,23 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:05:21 by lkiloul           #+#    #+#             */
-/*   Updated: 2024/11/20 14:19:22 by lkiloul          ###   ########.fr       */
+/*   Updated: 2024/11/25 16:45:34 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-
-#define BUFFER_SIZE 8
-
+#include "get_next_line.h"
 char *get_next_line(int fd)
 {
-    char *str;
+    char *buffer;
     int bytes_read;
 
-    str = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-    if (!str)
+    buffer = malloc(sizeof(char *) * BUFFER_SIZE + 1);
+    if (!buffer)
         return (NULL);
-
-
-    bytes_read = read(fd, str, BUFFER_SIZE);
-    if (bytes_read <= 0)
-    {
-        free(str);
-        return (NULL); 
-    }
-
-
-    str[bytes_read] = '\0';
-    return (str);
-}
-
-void ft_putstr(char *str)
-{
-    if (!str)
-        return;
-    while (*str)
-    {
-        write(1, str, 1);
-        str++;
-    }
-}
-
-int main(void)
-{
-    char *line;
-
-    line = get_next_line(0); 
-    if (line)
-    {
-        ft_putstr(line);
-        free(line);      
-    }
-    return (0);
+    bytes_read = read(fd, buffer, BUFFER_SIZE);
+    if (!bytes_read)
+        return (NULL);
+    while (!ft_strchr(buffer, '\n'))
+        ft_putstr(buffer);
+    return ("test");
 }
