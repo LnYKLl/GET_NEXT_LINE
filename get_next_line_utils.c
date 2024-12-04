@@ -6,13 +6,13 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:50:11 by lkiloul           #+#    #+#             */
-/*   Updated: 2024/12/04 02:19:22 by lkiloul          ###   ########.fr       */
+/*   Updated: 2024/12/04 05:03:55 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *s)
+static int	ft_strlen(char *s)
 {
 	int	i;
 
