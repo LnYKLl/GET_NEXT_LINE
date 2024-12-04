@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 01:27:31 by lkiloul           #+#    #+#             */
-/*   Updated: 2024/12/04 05:33:02 by lkiloul          ###   ########.fr       */
+/*   Updated: 2024/12/04 09:05:15 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ static char	*get_line(char **str)
 		*str = tmp;
 		if (**str == '\0')
 		{
-			ft_free(&(*str));
+			free(*str);
+			*str = NULL;
 		}
 	}
 	else
 	{
 		line = ft_strdup(*str);
-		ft_free(&(*str));
+		free(*str);
+		*str = NULL;
 	}
 	return (line);
 }
@@ -53,26 +55,25 @@ char	*get_next_line(int fd)
 	while (bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read < 0)
+			return (NULL);
 		buffer[bytes_read] = '\0';
 		if (!str)
 			str = ft_strdup(buffer);
 		else
 		{
 			tmp = ft_strjoin(str, buffer);
+			free(str);
 			str = tmp;
 		}
 		if (ft_strchr(str, '\n'))
 			break ;
 	}
-	if (bytes_read < 0 || ((bytes_read == 0) && (!str || *str == '\0')))
+	if (bytes_read <= 0 && (!str || *str == '\0'))
+	{
+		free(str);
+		str = NULL;
 		return (NULL);
+	}
 	return (get_line(&str));
-}
-
-void	ft_free(char **s)
-{
-	if (!s || !*s)
-		return ;
-	free(*s);
-	*s = NULL;
 }
