@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:51:56 by lkiloul           #+#    #+#             */
-/*   Updated: 2024/12/04 05:04:41 by lkiloul          ###   ########.fr       */
+/*   Updated: 2024/12/04 05:23:02 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*get_next_line(int fd);
+void	ft_free(char **s);
 
 #endif
