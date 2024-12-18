@@ -6,7 +6,7 @@
 /*   By: lkiloul <lkiloul@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 01:27:31 by lkiloul           #+#    #+#             */
-/*   Updated: 2024/12/13 11:02:10 by lkiloul          ###   ########.fr       */
+/*   Updated: 2024/12/18 12:39:25 by lkiloul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,3 +90,19 @@ char	*get_next_line(int fd)
 	}
 	return (get_line(&str));
 }
+/*
+#include <stdio.h>
+int main(void)
+{
+	int fd;
+	fd = open("text.txt", O_RDONLY);
+	char *line;
+	while ((line = get_next_line(fd)))
+	{
+		printf("%s", line);
+		free(line);
+	}
+	close(fd);
+	return (0);
+}
+*/
